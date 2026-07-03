@@ -17,9 +17,11 @@ All motion respects `prefers-reduced-motion`.
 
 ## Stack
 
-Single static file, no build step or dependencies.
+Static site, no build step or dependencies.
 
-- `index.html` — markup, styles, and script in one file
+- `index.html` — markup
+- `css/styles.css` — all styles
+- `js/main.js` — mobile nav, scroll reveals, split-flap clock, lights-off interaction
 - Fonts: Archivo (display/body) and Spline Sans Mono (run-sheet timecodes), loaded from Google Fonts
 
 ## Running locally
