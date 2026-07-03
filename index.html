@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Even &amp; Mark — Association Conference Management &amp; Marketing, Melbourne</title>
+<meta name="description" content="Even & Mark is an association PCO with marketing built into the same team. Conferences run to the minute, promoted from the first save-the-date. Melbourne-based, working across Australia & Aotearoa New Zealand.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #12151a;
+  --ink-soft: #3d434c;
+  --paper: #f4f5f2;
+  --white: #ffffff;
+  --cobalt: #2138e8;
+  --cobalt-deep: #1727ad;
+  --signal: #ff5312;
+  --signal-deep: #cf3c05;
+  --line: #d9dbd4;
+  --radius: 14px;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  font-family: "Archivo", sans-serif;
+  font-variation-settings: "wdth" 100;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--cobalt); color: var(--white); }
+
+.mono {
+  font-family: "Spline Sans Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+
+a { color: inherit; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--cobalt);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  gap: 24px;
+}
+.brand {
+  font-weight: 800;
+  font-variation-settings: "wdth" 118;
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.brand .amp { color: var(--signal); }
+.main-nav { display: flex; align-items: center; gap: clamp(14px, 2.5vw, 32px); }
+.main-nav a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  transition: color 0.15s;
+}
+.main-nav a:hover { color: var(--ink); }
+.main-nav a:not(.btn) { position: relative; }
+.main-nav a:not(.btn)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s ease;
+}
+.main-nav a:not(.btn):hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* run-sheet clock + day progress */
+.day-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--ink-soft);
+  letter-spacing: 0.14em;
+}
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--signal);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+/* split-flap clock tiles */
+.day-clock .time {
+  display: inline-flex;
+  gap: 3px;
+  perspective: 240px;
+}
+.day-clock .tile {
+  display: inline-block;
+  position: relative;
+  padding: 3px 5px;
+  background: var(--ink);
+  color: #f4f5f2;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.day-clock .tile::after {
+  content: "";
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  top: 50%;
+  height: 1px;
+  background: rgba(244, 245, 242, 0.22);
+}
+.day-clock .sep { padding: 3px 0; color: var(--ink-soft); }
+.day-clock .tile.flap { animation: flap 0.32s cubic-bezier(0.3, 0.7, 0.4, 1); }
+@keyframes flap {
+  0% { transform: rotateX(-88deg); }
+  55% { transform: rotateX(14deg); }
+  100% { transform: rotateX(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 83, 18, 0.35); }
+  50% { opacity: 0.55; box-shadow: 0 0 0 6px rgba(255, 83, 18, 0); }
+}
+.day-progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cobalt), var(--signal));
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.btn {
+  display: inline-block;
+  font-family: "Archivo", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  padding: 13px 26px;
+  border-radius: 100px;
+  transition: transform 0.15s, background 0.15s, color 0.15s;
+}
+.btn-primary { background: var(--ink); color: var(--white); }
+.btn-primary:hover { background: var(--cobalt); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
+}
+.btn-ghost:hover { background: var(--ink); color: var(--white); }
+.nav-cta { padding: 10px 20px; font-size: 0.88rem; }
+.nav-toggle { display: none; }
+
+/* ---------- section scaffolding ---------- */
+.session { padding: clamp(72px, 10vw, 128px) 0; }
+.session-head { margin-bottom: clamp(36px, 5vw, 64px); }
+.timecode {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+.timecode::before {
+  content: "";
+  width: 34px;
+  height: 1.5px;
+  background: var(--signal);
+}
+.session-title {
+  font-weight: 800;
+  font-variation-settings: "wdth" 116;
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  max-width: 18ch;
+}
+.session-intro {
+  max-width: 58ch;
+  color: var(--ink-soft);
+  margin-top: 20px;
+  font-size: 1.05rem;
+}
+
+/* ---------- hero ---------- */
+.hero { padding: clamp(64px, 9vw, 120px) 0 clamp(72px, 10vw, 130px); }
+.hero-title {
+  font-weight: 900;
+  font-variation-settings: "wdth" 122;
+  font-size: clamp(3.2rem, 11.5vw, 9.8rem);
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 26px 0 0;
+}
+.hero-title .amp { font-variation-settings: "wdth" 80; font-weight: 400; }
+
+/* load sequence: rise in, then the suffixes flicker on like venue signage */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(34px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.rise-2 { animation-delay: 0.12s; }
+.rise-3 { animation-delay: 0.32s; }
+.rise-4 { animation-delay: 0.46s; }
+.hero-title .suffix-a { --on: var(--cobalt); }
+.hero-title .suffix-b { --on: var(--signal); }
+.hero-title .suffix-a, .hero-title .suffix-b {
+  color: var(--ink);
+  animation: light-up 1.7s both;
+}
+.hero-title .suffix-b { animation-delay: 0.22s; }
+@keyframes light-up {
+  0%, 52% { color: var(--ink); }
+  58% { color: var(--on); }
+  64% { color: var(--ink); }
+  71% { color: var(--on); }
+  76% { color: var(--ink); }
+  82%, 100% { color: var(--on); }
+}
+.hero-title .lit { animation: none; color: var(--on); transition: color 0.5s ease; }
+
+/* lights off: hover the sign, the venue goes dark, the name glows */
+.hero-title { position: relative; cursor: pointer; }
+.hero-title .base, .hero-title .amp { transition: color 0.5s ease, text-shadow 0.5s ease; }
+.lights-overlay {
+  position: fixed;
+  inset: 0;
+  background: #0b0d12;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 60;
+}
+body.lights-off .lights-overlay { opacity: 0.96; }
+body.lights-off .hero-title { z-index: 70; }
+body.lights-off .hero-title .base {
+  color: #f7f6f1;
+  text-shadow: 0 0 18px rgba(247, 246, 241, 0.35), 0 0 70px rgba(247, 246, 241, 0.22);
+}
+body.lights-off .hero-title .amp {
+  color: var(--signal);
+  text-shadow: 0 0 20px rgba(255, 83, 18, 0.5), 0 0 70px rgba(255, 83, 18, 0.28);
+}
+body.lights-off .hero-title .suffix-a,
+body.lights-off .hero-title .suffix-b { color: #262a33; }
+.hero-legend .light-hint { opacity: 0.6; }
+.hero-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 30px;
+  color: var(--ink-soft);
+}
+.hero-legend span { display: inline-flex; align-items: center; gap: 8px; }
+.hero-legend i {
+  width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+}
+.hero-legend .dot-a { background: var(--cobalt); }
+.hero-legend .dot-b { background: var(--signal); }
+.hero-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-top: clamp(40px, 6vw, 72px);
+}
+.hero-sub {
+  max-width: 46ch;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  color: var(--ink-soft);
+}
+.hero-sub strong { color: var(--ink); font-weight: 600; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ---------- plenary / thesis ---------- */
+.plenary { background: rgba(255, 255, 255, 0.55); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.thesis-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+}
+.thesis-col h3 {
+  font-weight: 800;
+  font-variation-settings: "wdth" 114;
+  font-size: 1.5rem;
+  margin: 14px 0 12px;
+}
+.thesis-col p { color: var(--ink-soft); max-width: 40ch; }
+.thesis-col .tag {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 100px;
+  color: var(--white);
+}
+.tag-a { background: var(--cobalt); }
+.tag-b { background: var(--signal); }
+.thesis-amp {
+  font-weight: 400;
+  font-variation-settings: "wdth" 75;
+  font-size: clamp(4rem, 9vw, 8rem);
+  line-height: 1;
+  align-self: center;
+  color: var(--ink);
+}
+.thesis-close {
+  margin-top: clamp(36px, 5vw, 56px);
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  font-size: clamp(1.2rem, 2.2vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1.4;
+  max-width: 34ch;
+}
+.thesis-close em { font-style: normal; color: var(--cobalt); }
+
+/* ---------- program (services) ---------- */
+.program-legend {
+  display: grid;
+  grid-template-columns: 130px 1fr 1fr;
+  gap: 20px;
+  padding: 0 24px 14px;
+}
+.program-legend .mono { color: var(--ink-soft); }
+.program-legend .track-a { color: var(--cobalt-deep); }
+.program-legend .track-b { color: var(--signal-deep); }
+.program { display: flex; flex-direction: column; gap: 10px; }
+.program-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 1fr;
+  gap: 20px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.program-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(18, 21, 26, 0.07);
+}
+.program-row .phase { color: var(--ink); padding-top: 4px; }
+.cell h4 {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+.cell p { color: var(--ink-soft); font-size: 0.94rem; max-width: 34ch; }
+.cell { position: relative; padding-left: 19px; }
+.cell::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 2px;
+  width: 3px;
+  border-radius: 2px;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+.cell-a::before { background: var(--cobalt); }
+.cell-b::before { background: var(--signal); }
+.program-row.is-visible .cell::before { transform: scaleY(1); }
+.cell .track-chip { display: none; }
+
+/* ---------- approach ---------- */
+.approach { background: rgba(255, 255, 255, 0.55); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3.5vw, 48px);
+}
+.approach-item { border-top: 3px solid var(--ink); padding-top: 22px; }
+.approach-item:nth-child(2) { border-top-color: var(--cobalt); }
+.approach-item:nth-child(3) { border-top-color: var(--signal); }
+.approach-item h3 {
+  font-weight: 800;
+  font-variation-settings: "wdth" 112;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+.approach-item p { color: var(--ink-soft); font-size: 0.98rem; }
+
+/* ---------- about ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+.about-copy p { color: var(--ink-soft); margin-bottom: 18px; max-width: 56ch; }
+.about-copy p strong { color: var(--ink); font-weight: 600; }
+.badge-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  max-width: 360px;
+  justify-self: end;
+  width: 100%;
+  box-shadow: 0 18px 44px rgba(18, 21, 26, 0.08);
+  transform: rotate(1.5deg);
+}
+.badge-card .lanyard {
+  height: 14px;
+  background: repeating-linear-gradient(90deg, var(--cobalt) 0 26px, var(--signal) 26px 52px);
+}
+.badge-card .punch {
+  width: 44px; height: 8px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  margin: 18px auto 6px;
+}
+.badge-body { padding: 14px 26px 28px; text-align: center; }
+.badge-body .role { color: var(--ink-soft); margin-bottom: 10px; }
+.badge-body .name {
+  font-weight: 900;
+  font-variation-settings: "wdth" 120;
+  font-size: 2rem;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.badge-body .name .amp { color: var(--signal); }
+.badge-body .org { color: var(--ink-soft); font-size: 0.9rem; margin-top: 8px; }
+.badge-body .access {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.badge-body .access span {
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 0.68rem;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+.badge-body .access .all { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+/* ---------- closing / contact ---------- */
+.closing {
+  background: var(--ink);
+  color: var(--paper);
+}
+.closing .timecode { color: #9aa1ab; }
+.closing .session-title { color: var(--white); }
+.closing .session-intro { color: #b6bcc5; }
+.closing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(36px, 5vw, 80px);
+  align-items: start;
+}
+.contact-form { display: grid; gap: 14px; }
+.contact-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.contact-form label { display: grid; gap: 7px; }
+.contact-form .label-text { color: #b6bcc5; }
+.contact-form input, .contact-form textarea {
+  font-family: "Archivo", sans-serif;
+  font-size: 1rem;
+  color: var(--white);
+  background: #1d2129;
+  border: 1px solid #343a45;
+  border-radius: 10px;
+  padding: 14px 16px;
+  transition: border-color 0.15s;
+}
+.contact-form input:hover, .contact-form textarea:hover { border-color: #4a515f; }
+.contact-form textarea { resize: vertical; min-height: 120px; }
+.contact-form .btn { margin-top: 8px; justify-self: start; background: var(--signal); color: var(--white); }
+.contact-form .btn:hover { background: var(--white); color: var(--ink); }
+.closing-note { color: #b6bcc5; max-width: 44ch; }
+.closing-note h3 {
+  color: var(--white);
+  font-weight: 800;
+  font-variation-settings: "wdth" 114;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+.closing-note p { margin-bottom: 16px; }
+.closing-note .mono { color: #9aa1ab; }
+
+.site-footer { background: var(--ink); border-top: 1px solid #272c35; padding: 30px 0 40px; }
+.site-footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  color: #9aa1ab;
+  font-size: 0.85rem;
+}
+.site-footer a { color: #b6bcc5; text-decoration: none; }
+.site-footer a:hover { color: var(--white); }
+
+/* ---------- film grain + duotone photography ---------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  background: var(--grain);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 100;
+}
+.photo-band {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+}
+.duo-a { background: linear-gradient(115deg, #101c66, var(--cobalt) 60%, #4a63ff); }
+.duo-b { background: linear-gradient(115deg, #571b02, var(--signal) 65%, #ff8a54); }
+.photo-band img {
+  display: block;
+  width: 100%;
+  height: clamp(260px, 42vw, 440px);
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.1);
+  mix-blend-mode: luminosity;
+  opacity: 0.92;
+  transform: scale(1.06);
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.photo-band.is-visible img { transform: scale(1); }
+.photo-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--grain);
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.photo-band figcaption {
+  position: absolute;
+  left: clamp(20px, 4vw, 48px);
+  bottom: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- reveal animation ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+.program-row.is-visible { transition: transform 0.2s, box-shadow 0.2s; }
+
+/* thesis ampersand springs in */
+.amp-pop {
+  transform: scale(0.4) rotate(-12deg);
+  transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.amp-pop.is-visible { transform: none; }
+
+/* badge keeps its tilt after reveal, straightens on hover */
+.badge-card.is-visible {
+  transform: rotate(1.5deg);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.badge-card.is-visible:hover { transform: rotate(0deg) translateY(-6px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .amp-pop { opacity: 1; transform: none; transition: none; }
+  .badge-card.is-visible { transform: rotate(1.5deg); }
+  .rise, .hero-title .suffix-a, .hero-title .suffix-b, .live-dot { animation: none; }
+  .lights-overlay, .hero-title .base, .hero-title .amp { transition: none; }
+  .day-clock .tile.flap { animation: none; }
+  .photo-band img { transform: none; transition: none; }
+  .hero-title .suffix-a { color: var(--cobalt); }
+  .hero-title .suffix-b { color: var(--signal); }
+  .cell::before { transform: scaleY(1); transition: none; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 880px) {
+  .main-nav {
+    position: fixed;
+    inset: 68px 0 auto 0;
+    flex-direction: column;
+    align-items: stretch;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding: 18px clamp(20px, 4vw, 48px) 26px;
+    gap: 16px;
+    display: none;
+  }
+  .main-nav.open { display: flex; }
+  .nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px; height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+  }
+  .nav-toggle span {
+    width: 22px; height: 2px;
+    background: var(--ink);
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .thesis-grid { grid-template-columns: 1fr; }
+  .thesis-amp { justify-self: center; }
+  .program-legend { display: none; }
+  .program-row { grid-template-columns: 1fr; gap: 18px; }
+  .program-row .phase { padding-top: 0; }
+  .cell .track-chip {
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    color: var(--white);
+  }
+  .cell-a .track-chip { background: var(--cobalt); }
+  .cell-b .track-chip { background: var(--signal); }
+  .approach-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .badge-card { justify-self: start; }
+  .closing-grid { grid-template-columns: 1fr; }
+  .contact-form .row { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .day-clock { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">EVEN <span class="amp">&amp;</span> MARK</a>
+    <span class="day-clock mono" aria-hidden="true"><i class="live-dot"></i><span class="time">08:00</span></span>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="main-nav">
+      <a href="#services">Services</a>
+      <a href="#approach">Our approach</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-primary nav-cta" href="#contact">Book a call</a>
+    </nav>
+  </div>
+  <div class="day-progress" aria-hidden="true"></div>
+</header>
+
+<div class="lights-overlay" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<main id="top">
+
+  <!-- 08:00 — hero -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="mono timecode rise">08:00 — Registration opens</p>
+      <h1 class="hero-title rise rise-2">
+        <span class="base">EVEN</span><span class="suffix-a">T</span> <span class="amp">&amp;</span><br>
+        <span class="base">MARK</span><span class="suffix-b">ETING</span>
+      </h1>
+      <p class="mono hero-legend rise rise-3">
+        <span><i class="dot-a"></i>Even — the conferences we run</span>
+        <span><i class="dot-b"></i>Mark — the marketing we build in</span>
+        <span class="light-hint">Hover the sign — lights off</span>
+      </p>
+      <div class="hero-foot rise rise-4">
+        <p class="hero-sub">
+          Even &amp; Mark is an association conference organiser with marketing on the same team —
+          <strong>not bolted on, built in.</strong> Melbourne-based, working across Australia
+          &amp; Aotearoa New Zealand.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Book a discovery call</a>
+          <a class="btn btn-ghost" href="#services">See the program</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09:40 — the room -->
+  <figure class="photo-band duo-a reveal">
+    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&amp;fit=crop&amp;w=1800&amp;q=70" alt="Delegates filling a conference hall during a plenary session">
+    <figcaption class="mono">09:40 — Hall A, plenary in session</figcaption>
+  </figure>
+
+  <!-- 09:15 — thesis -->
+  <section class="session plenary">
+    <div class="wrap">
+      <div class="session-head reveal">
+        <p class="mono timecode">09:15 — Plenary</p>
+        <h2 class="session-title">Most conferences hire two teams. Then the two teams meet.</h2>
+      </div>
+      <div class="thesis-grid reveal">
+        <div class="thesis-col">
+          <span class="mono tag tag-a">Track A — Event delivery</span>
+          <h3>The PCO knows the room</h3>
+          <p>Venues, suppliers, registration, speakers, run sheets. Everything that has to happen on time, in order, without the delegates noticing the effort.</p>
+        </div>
+        <div class="thesis-amp reveal amp-pop" aria-hidden="true">&amp;</div>
+        <div class="thesis-col">
+          <span class="mono tag tag-b">Track B — Marketing</span>
+          <h3>The agency knows the story</h3>
+          <p>Campaigns, content, email, social, live coverage. Everything that fills the room and keeps members talking after it empties.</p>
+        </div>
+      </div>
+      <p class="thesis-close reveal">
+        We are both, in one brief and one point of contact — so the story is planned
+        <em>with</em> the event, not after it.
+      </p>
+    </div>
+  </section>
+
+  <!-- 10:30 — program / services -->
+  <section class="session" id="services">
+    <div class="wrap">
+      <div class="session-head reveal">
+        <p class="mono timecode">10:30 — The program</p>
+        <h2 class="session-title">Two tracks. One team. Every phase of your conference.</h2>
+        <p class="session-intro">
+          Read it like a program: the event track and the marketing track run in parallel from
+          the first venue walkthrough to the post-event wrap. That parallel column is the point.
+        </p>
+      </div>
+
+      <div class="program-legend mono reveal" aria-hidden="true">
+        <span>Phase</span>
+        <span class="track-a">■ Track A — Event delivery</span>
+        <span class="track-b">■ Track B — Marketing</span>
+      </div>
+
+      <div class="program">
+        <div class="program-row reveal">
+          <p class="mono phase">T−6 months</p>
+          <div class="cell cell-a">
+            <span class="mono track-chip">Event</span>
+            <h4>Venue &amp; suppliers</h4>
+            <p>Venue selection, supplier negotiation and budget scaffolding that holds to the last invoice.</p>
+          </div>
+          <div class="cell cell-b">
+            <span class="mono track-chip">Marketing</span>
+            <h4>Campaign plan &amp; event brand</h4>
+            <p>Positioning, event listings and a promotion calendar set before the save-the-date goes out.</p>
+          </div>
+        </div>
+
+        <div class="program-row reveal">
+          <p class="mono phase">T−3 months</p>
+          <div class="cell cell-a">
+            <span class="mono track-chip">Event</span>
+            <h4>Speakers &amp; agenda</h4>
+            <p>Speaker coordination, agenda development and abstract wrangling, session by session.</p>
+          </div>
+          <div class="cell cell-b">
+            <span class="mono track-chip">Marketing</span>
+            <h4>Email &amp; social campaigns</h4>
+            <p>Member emails and organic social that announce every speaker the week they're confirmed.</p>
+          </div>
+        </div>
+
+        <div class="program-row reveal">
+          <p class="mono phase">T−4 weeks</p>
+          <div class="cell cell-a">
+            <span class="mono track-chip">Event</span>
+            <h4>Registration &amp; logistics</h4>
+            <p>Delegate registration, catering counts, AV checks and a run sheet timed to the minute.</p>
+          </div>
+          <div class="cell cell-b">
+            <span class="mono track-chip">Marketing</span>
+            <h4>Final call</h4>
+            <p>Program reveals, last-seats messaging and reminders that convert the fence-sitters.</p>
+          </div>
+        </div>
+
+        <div class="program-row reveal">
+          <p class="mono phase">Event days</p>
+          <div class="cell cell-a">
+            <span class="mono track-chip">Event</span>
+            <h4>On-site management</h4>
+            <p>Registration desk, speaker liaison, room turns and quiet fixes before anyone notices.</p>
+          </div>
+          <div class="cell cell-b">
+            <span class="mono track-chip">Marketing</span>
+            <h4>Live coverage</h4>
+            <p>Photo, video and social posted from the floor while the sessions are still running.</p>
+          </div>
+        </div>
+
+        <div class="program-row reveal">
+          <p class="mono phase">After</p>
+          <div class="cell cell-a">
+            <span class="mono track-chip">Event</span>
+            <h4>Wrap &amp; reconciliation</h4>
+            <p>Supplier reconciliation, debrief and a report your committee can actually read.</p>
+          </div>
+          <div class="cell cell-b">
+            <span class="mono track-chip">Marketing</span>
+            <h4>Highlights &amp; momentum</h4>
+            <p>Recap content that thanks this year's delegates and starts selling next year's dates.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13:00 — approach -->
+  <section class="session approach" id="approach">
+    <div class="wrap">
+      <div class="session-head reveal">
+        <p class="mono timecode">13:00 — Breakout</p>
+        <h2 class="session-title">How we work</h2>
+      </div>
+      <div class="approach-grid">
+        <div class="approach-item reveal">
+          <p class="mono">01</p>
+          <h3>One brief, one contact</h3>
+          <p>You brief us once. No relaying decisions between a PCO and an agency, no gaps for details to fall through, no two invoices telling different stories.</p>
+        </div>
+        <div class="approach-item reveal">
+          <p class="mono">02</p>
+          <h3>Association-first</h3>
+          <p>We work for member organisations, so we plan for the people you answer to: delegates, sponsors, boards and committees — in that order.</p>
+        </div>
+        <div class="approach-item reveal">
+          <p class="mono">03</p>
+          <h3>The story runs with the event</h3>
+          <p>Marketing sits in the planning meetings from day one. Every milestone in the run sheet is also a moment in the campaign.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15:45 — about -->
+  <section class="session" id="about">
+    <div class="wrap">
+      <div class="session-head reveal">
+        <p class="mono timecode">15:45 — Panel</p>
+        <h2 class="session-title">About Even &amp; Mark</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy reveal">
+          <p>
+            Even &amp; Mark is a <strong>Melbourne-based professional conference organiser</strong> built for
+            associations and member bodies. We manage the full life of a conference — venue to wrap-up —
+            with the marketing handled by the same people who hold the run sheet.
+          </p>
+          <p>
+            The name is the offer: <strong>Even</strong> for the events we run, <strong>Mark</strong> for the
+            marketing we build in. It's one team because your conference is one project, however many
+            disciplines it takes.
+          </p>
+          <p>
+            We work across <strong>Australia &amp; Aotearoa New Zealand</strong>, from annual scientific
+            meetings to member summits and everything on the calendar in between.
+          </p>
+        </div>
+        <div class="badge-card reveal" aria-hidden="true">
+          <div class="lanyard"></div>
+          <div class="punch"></div>
+          <div class="badge-body">
+            <p class="mono role">Delegate badge — sample</p>
+            <p class="name">YOUR<br>CONFERENCE<br><span class="amp">&amp;</span> US</p>
+            <p class="org">Melbourne · AU &amp; NZ</p>
+            <div class="access mono">
+              <span class="all">All access</span>
+              <span>Plenary</span>
+              <span>Gala</span>
+              <span>Workshops</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17:15 — the foyer -->
+  <figure class="photo-band duo-b reveal">
+    <img src="https://images.unsplash.com/photo-1519214605650-76a613ee3245?auto=format&amp;fit=crop&amp;w=1800&amp;q=70" alt="Neon bar sign glowing in a dark foyer ahead of the closing reception">
+    <figcaption class="mono">17:15 — The foyer, ready for closing drinks</figcaption>
+  </figure>
+
+  <!-- 17:30 — contact -->
+  <section class="session closing" id="contact">
+    <div class="wrap">
+      <div class="session-head reveal">
+        <p class="mono timecode">17:30 — Closing &amp; drinks</p>
+        <h2 class="session-title">Tell us about your next conference</h2>
+        <p class="session-intro">
+          A 30-minute discovery call, no obligation. Bring the dates you're weighing up and
+          the number you need in the room — we'll tell you honestly how we'd get there.
+        </p>
+      </div>
+      <div class="closing-grid">
+        <form class="contact-form reveal" action="#" method="post">
+          <div class="row">
+            <label>
+              <span class="mono label-text">Name</span>
+              <input type="text" name="name" autocomplete="name" required>
+            </label>
+            <label>
+              <span class="mono label-text">Organisation</span>
+              <input type="text" name="organisation" autocomplete="organization">
+            </label>
+          </div>
+          <div class="row">
+            <label>
+              <span class="mono label-text">Email</span>
+              <input type="email" name="email" autocomplete="email" required>
+            </label>
+            <label>
+              <span class="mono label-text">Phone</span>
+              <input type="tel" name="phone" autocomplete="tel">
+            </label>
+          </div>
+          <label>
+            <span class="mono label-text">About your event</span>
+            <textarea name="message" placeholder="Dates, expected delegates, and what's keeping you up at night"></textarea>
+          </label>
+          <button class="btn" type="submit">Send enquiry</button>
+        </form>
+        <div class="closing-note reveal">
+          <h3>The room is run.<br>The story is told.<br>You take the credit.</h3>
+          <p>
+            That's the job. Your committee sees a conference that ran to the minute and a
+            member base that heard about every minute of it.
+          </p>
+          <p class="mono">Melbourne, Australia — working AU &amp; NZ wide</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Even &amp; Mark — Association PCO &amp; conference marketing</span>
+    <span>
+      <a href="#services">Services</a> ·
+      <a href="#approach">Approach</a> ·
+      <a href="#about">About</a> ·
+      <a href="#contact">Contact</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+// Mobile nav
+const toggle = document.querySelector(".nav-toggle");
+const nav = document.querySelector(".main-nav");
+toggle.addEventListener("click", () => {
+  const open = nav.classList.toggle("open");
+  toggle.setAttribute("aria-expanded", String(open));
+  toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+});
+nav.addEventListener("click", (e) => {
+  if (e.target.tagName === "A") {
+    nav.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+});
+
+// Scroll reveals, staggered where siblings arrive together
+const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!reduced && "IntersectionObserver" in window) {
+  document.querySelectorAll(".program-row").forEach((el, i) => { el.dataset.delay = i * 90; });
+  document.querySelectorAll(".approach-item").forEach((el, i) => { el.dataset.delay = i * 110; });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const delay = Number(entry.target.dataset.delay || 0);
+        setTimeout(() => {
+          entry.target.classList.add("is-visible");
+          entry.target.querySelectorAll(".timecode").forEach(flapText);
+        }, delay);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+} else {
+  document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"));
+}
+
+// Split-flap settle: timecodes clack through characters before landing,
+// like a departure board updating for the next session
+const FLAPCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+function flapText(el) {
+  if (reduced || el.dataset.flapping) return;
+  el.dataset.flapping = "true";
+  const chars = [...el.textContent];
+  const settle = chars.map((c, i) => (/[a-z0-9]/i.test(c) ? 3 + i * 0.6 : 0));
+  const last = Math.max(...settle);
+  let frame = 0;
+  const timer = setInterval(() => {
+    frame++;
+    el.textContent = chars
+      .map((c, i) => (frame >= settle[i] ? c : FLAPCHARS[Math.floor(Math.random() * FLAPCHARS.length)]))
+      .join("");
+    if (frame >= last) {
+      clearInterval(timer);
+      el.textContent = chars.join("");
+    }
+  }, 42);
+}
+if (!reduced) {
+  setTimeout(() => flapText(document.querySelector(".hero .timecode")), 350);
+}
+
+// Run-sheet clock: the header ticks from 08:00 to 17:30 as you scroll the day,
+// rendered as split-flap tiles that flip when a digit changes
+const dayBar = document.querySelector(".day-progress");
+const dayTime = document.querySelector(".day-clock .time");
+const clockTiles = [..."08:00"].map((ch) => {
+  const s = document.createElement("span");
+  s.className = ch === ":" ? "sep" : "tile";
+  s.textContent = ch;
+  return s;
+});
+dayTime.textContent = "";
+dayTime.append(...clockTiles);
+function setClock(str) {
+  [...str].forEach((ch, i) => {
+    const tile = clockTiles[i];
+    if (tile.textContent !== ch) {
+      tile.textContent = ch;
+      if (!reduced && tile.classList.contains("tile")) {
+        tile.classList.remove("flap");
+        void tile.offsetWidth; // restart the flip
+        tile.classList.add("flap");
+      }
+    }
+  });
+}
+let dayTicking = false;
+function updateDay() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const f = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+  dayBar.style.transform = `scaleX(${f})`;
+  const mins = 480 + Math.round((f * 570) / 5) * 5; // 08:00 -> 17:30, 5-min steps
+  setClock(`${String(Math.floor(mins / 60)).padStart(2, "0")}:${String(mins % 60).padStart(2, "0")}`);
+  // sky: morning porcelain -> midday warmth -> golden hour (closing section brings the night)
+  const SKY = [
+    [0, [244, 245, 242]],
+    [0.35, [247, 243, 234]],
+    [0.65, [246, 235, 216]],
+    [0.85, [240, 224, 199]],
+    [1, [240, 224, 199]]
+  ];
+  let s = 1;
+  while (SKY[s][0] < f) s++;
+  const [f0, c0] = SKY[s - 1];
+  const [f1, c1] = SKY[s];
+  const t = f1 === f0 ? 0 : (f - f0) / (f1 - f0);
+  const c = c0.map((v, k) => Math.round(v + (c1[k] - v) * t));
+  document.documentElement.style.setProperty("--paper", `rgb(${c[0]}, ${c[1]}, ${c[2]})`);
+  dayTicking = false;
+}
+window.addEventListener("scroll", () => {
+  if (!dayTicking) { dayTicking = true; requestAnimationFrame(updateDay); }
+}, { passive: true });
+window.addEventListener("resize", updateDay);
+updateDay();
+
+// Lights off: hover the wordmark and the venue goes dark, the name glows
+const heroTitle = document.querySelector(".hero-title");
+document.querySelectorAll(".hero-title .suffix-a, .hero-title .suffix-b").forEach((el) => {
+  el.addEventListener("animationend", () => el.classList.add("lit"), { once: true });
+});
+if (window.matchMedia("(hover: hover)").matches) {
+  heroTitle.addEventListener("pointerenter", () => document.body.classList.add("lights-off"));
+  heroTitle.addEventListener("pointerleave", () => document.body.classList.remove("lights-off"));
+} else {
+  heroTitle.addEventListener("click", () => document.body.classList.toggle("lights-off"));
+}
+</script>
+</body>
+</html>
